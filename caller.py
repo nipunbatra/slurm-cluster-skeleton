@@ -2,6 +2,7 @@ import os
 import time
 
 import delegator
+from subprocess import Popen
 
 # Enter your username on the cluster
 username = 'nb2cz'
@@ -45,5 +46,5 @@ for i in range(1, 10):
 			while len(delegator.run('squeue -u %s' % username).out.split("\n")) > MAX_NUM_MY_JOBS + 2:
 				time.sleep(DELAY_NUM_JOBS_EXCEEDED)
 
-			delegator.run(command, block=False)
+			Popen(command)
 			print SLURM_SCRIPT
