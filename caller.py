@@ -28,7 +28,7 @@ for i in range(1, 10):
 			EFILE = "%s/%d_%d_%d.err" % (SLURM_OUT, i, j, k)
 			SLURM_SCRIPT = "%d_%d_%d.pbs" % (i, j, k)
 			# Calling out "called" script
-			CMD = 'python called.py %d_%d_%d.pbs' % (i, j, k)
+			CMD = 'python called.py %d %d %d' % (i, j, k)
 			# Creating the SBTACH script telling time and memory requirements, and location of error and output files
 			lines = list()
 			lines.append("#!/bin/sh\n")
@@ -46,5 +46,5 @@ for i in range(1, 10):
 			while len(delegator.run('squeue -u %s' % username).out.split("\n")) > MAX_NUM_MY_JOBS + 2:
 				time.sleep(DELAY_NUM_JOBS_EXCEEDED)
 
-			Popen(command)
+			delegator.run(command, block=False)
 			print SLURM_SCRIPT
