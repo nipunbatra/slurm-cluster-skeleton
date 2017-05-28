@@ -25,9 +25,9 @@ for i in range(1, 10):
 			OFILE = "%s/%d_%d_%d.out" % (SLURM_OUT, i, j, k)
 			# Location of error files. This is where the error occuring are captured.
 			EFILE = "%s/%d_%d_%d.err" % (SLURM_OUT, i, j, k)
-			SLURM_SCRIPT = "%d_%d_%d.pbs" % (SLURM_OUT, i, j, k)
+			SLURM_SCRIPT = "%d_%d_%d.pbs" % (i, j, k)
 			# Calling out "called" script
-			CMD = 'python called.py %d_%d_%d.pbs' % (SLURM_OUT, i, j, k)
+			CMD = 'python called.py %d_%d_%d.pbs' % (i, j, k)
 			# Creating the SBTACH script telling time and memory requirements, and location of error and output files
 			lines = list()
 			lines.append("#!/bin/sh\n")
